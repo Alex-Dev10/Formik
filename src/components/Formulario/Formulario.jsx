@@ -13,6 +13,8 @@ export const Formulario = () => {
     <div className='container'>
 
     <Formik
+
+    //los valores que se usaran en el formulario
     initialValues={{
         name:"",
         correo:"",
@@ -20,34 +22,35 @@ export const Formulario = () => {
 
     }}
 
-
+//validaciones de cada input
 validate={(valores)=>{
 
     let errores={}
+
     if(!valores.name){
-        errores.name= "Por favor ingrese un nombre"
+        errores.name= "Por favor ingrese un nombre valido"
     } else if(!/^[A-Z][a-z]+$/.test(valores.name)){
-        errores.name="solo puede contener letras y espacios"
+        errores.name="Primera letra en mayuscula, sin espacios y sin numeros"
     }
 
     if(!valores.correo){
-        errores.correo= "ingrese un correo"
+        errores.correo= "Ingrese un correo"
     }else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.correo)){
-        errores.correo="' solo puede contener, letras, numeros, puntos y guiones'"
+        errores.correo="' Solo puede contener, letras, numeros, puntos y guiones'"
     }
 
 
     if(!valores.password){
-        errores.password="ingrese una contraseña"
+        errores.password="Ingrese una contraseña"
     } else if(!/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(valores.password))
     {
-        errores.password="debe contener al menos 8 caracteres, al menos una letra MAYUSCULA, un numero y un caracter especial"
+        errores.password="Debe contener al menos '8 caracteres', al menos una letra MAYUSCULA, un numero y un caracter especial"
     }
 
 
     return errores;
 }}
-
+//se activa cuando se envie el formulario
     onSubmit={(valores,{resetForm})=>{
         console.log(valores)
         resetForm()
@@ -66,7 +69,7 @@ validate={(valores)=>{
                 <div  className='nombreContainer'> 
 
                      <label className='label' htmlFor="name"> Nombre:</label>
-                    <Field className="input" type="text"  name="name"   />
+                    <Field className="input" type="text"  name="name"  placeholder=" Ejemplo : Alex" />
 
                     <ErrorMessage  name='name' component={()=>(
                     <div className='errorname' >{errors.name} </div>
@@ -78,7 +81,7 @@ validate={(valores)=>{
 
                  <label className='label' htmlFor="correo">Correo:</label>
 
-                 <Field className="input" type="email" name="correo"/>
+                 <Field className="input" type="email" name="correo"  placeholder="  Ejemplo : alex@correo.com"  />
 
                  <ErrorMessage name='correo'  component={()=>(
                     <div className='errorcorreo' > {errors.correo}</div>
@@ -90,7 +93,7 @@ validate={(valores)=>{
 
                 <div className='contraseñaContainer'>
                         <label className='label' htmlFor="password">Contraseña:</label>
-                        <Field className="input" type="password" name="password" />
+                        <Field className="input" type="password" name="password"  placeholder=" Ejemplo : Password*10" />
                       <ErrorMessage  name="password" component={()=>(
                         <div className='errorcontraseña' > {errors.password} </div>
          ) }/>

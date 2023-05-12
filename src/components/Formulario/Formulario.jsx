@@ -62,12 +62,13 @@ validate={(valores)=>{
             <Form className='formulario'>
 
                 <h1>FORMULARIO</h1>
+
                 <div  className='nombreContainer'> 
 
-                <label className='label' htmlFor="name"> Nombre:</label>
-                <Field className="input" type="text"  name="name"   />
+                     <label className='label' htmlFor="name"> Nombre:</label>
+                    <Field className="input" type="text"  name="name"   />
 
-                <ErrorMessage  name='name' component={()=>(
+                    <ErrorMessage  name='name' component={()=>(
                     <div className='errorname' >{errors.name} </div>
                 )}/>
                 
